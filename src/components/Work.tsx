@@ -8,7 +8,7 @@ const projects = [
     title: "ScreenerAI",
     category: "AI Resume & Job Matching System",
     tools: "Python, FastAPI, HTML, CSS, JavaScript",
-    image: "/images/sapphire.png",
+    image: "images/sapphire.png",
   },
 ];
 
