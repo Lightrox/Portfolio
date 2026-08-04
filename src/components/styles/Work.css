@@ -89,22 +89,67 @@
 }
 
 .carousel-tools {
-  margin-top: 16px;
+  margin-top: 12px;
 }
 
 .carousel-tools .tools-label {
-  font-size: 14px;
-  font-weight: 400;
-  opacity: 0.6;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.7;
   text-transform: uppercase;
   letter-spacing: 1px;
+  color: var(--accentColor);
 }
 
 .carousel-tools p {
-  font-weight: 200;
+  font-weight: 300;
+  color: #d1d1d1;
+  margin: 4px 0 0;
+  font-size: 14px;
+}
+
+.carousel-highlights {
+  margin: 10px 0 6px 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.carousel-highlights li {
+  font-size: 14px;
+  font-weight: 300;
   color: #adacac;
-  margin: 6px 0 0;
-  font-size: 15px;
+  line-height: 1.4;
+}
+
+.carousel-github-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 8px 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  width: fit-content;
+  transition: all 0.3s ease;
+}
+
+.carousel-github-btn:hover {
+  background: rgba(94, 234, 212, 0.15);
+  border-color: var(--accentColor);
+  color: var(--accentColor);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(94, 234, 212, 0.2);
+}
+
+.carousel-github-btn .github-icon {
+  font-size: 16px;
 }
 
 .carousel-image-wrapper {

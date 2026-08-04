@@ -1,14 +1,40 @@
 import { useState, useCallback } from "react";
 import "./styles/Work.css";
-import WorkImage from "./WorkImage";
 import { MdArrowBack, MdArrowForward } from "react-icons/md";
+import { FaGithub } from "react-icons/fa";
 
-const projects = [
+interface Project {
+  title: string;
+  category: string;
+  tools: string;
+  link: string;
+  highlights: string[];
+}
+
+const projects: Project[] = [
   {
-    title: "ScreenerAI",
-    category: "AI Resume & Job Matching System",
-    tools: "Python, FastAPI, HTML, CSS, JavaScript",
-    image: "images/sapphire.png",
+    title: "BitTorrent Client",
+    category: "Peer-to-Peer File Transfer Client",
+    tools: "Java, TCP Sockets, Multithreading, SHA-1",
+    link: "https://github.com/Lightrox/Bittorent-client",
+    highlights: [
+      "Built a peer-to-peer file transfer client implementing the full BitTorrent wire protocol including tracker communication, peer discovery, and piece-based parallel downloads.",
+      "Developed a recursive bencode parser from scratch to process real .torrent files and extract tracker URLs, piece hashes, and file metadata.",
+      "Implemented multithreaded piece downloads with SHA-1 integrity verification and automatic re-download of corrupted pieces using a thread-safe rarest-first scheduling algorithm.",
+      "Fixed concurrent piece-allocation race conditions using synchronized scheduling.",
+    ],
+  },
+  {
+    title: "Codebase Assistant",
+    category: "AI RAG System for GitHub Repositories",
+    tools: "FastAPI, ChromaDB, BM25, Cohere, Groq, React",
+    link: "https://github.com/Lightrox/Codebase-assistant",
+    highlights: [
+      "Built a RAG system for natural-language Q&A over GitHub repositories using hybrid retrieval (BM25 + semantic embeddings) fused via Reciprocal Rank Fusion for higher-precision context selection.",
+      "Implemented AST-based chunking (Python ast, regex for Java/JS/Go) to split code at function/class boundaries, preserving semantic completeness for LLM context.",
+      "Built a FastAPI backend with citation-grounded generation via Groq (llama3-8b), returning exact file and line-number references with every answer.",
+      "Resolved a production OOM crash by migrating from local sentence-transformers/PyTorch to Cohere's embedding API, cutting runtime memory footprint for stable deployment on constrained infra.",
+    ],
   },
 ];
 
@@ -84,14 +110,28 @@ const Work = () => {
                         <p className="carousel-category">
                           {project.category}
                         </p>
+                        <ul className="carousel-highlights">
+                          {project.highlights.map((highlight, hIndex) => (
+                            <li key={hIndex}>{highlight}</li>
+                          ))}
+                        </ul>
                         <div className="carousel-tools">
                           <span className="tools-label">Tools & Features</span>
                           <p>{project.tools}</p>
                         </div>
+                        {project.link && (
+                          <a
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="carousel-github-btn"
+                            data-cursor="disable"
+                          >
+                            <FaGithub className="github-icon" />
+                            <span>View Source Code</span>
+                          </a>
+                        )}
                       </div>
-                    </div>
-                    <div className="carousel-image-wrapper">
-                      <WorkImage image={project.image} alt={project.title} />
                     </div>
                   </div>
                 </div>
@@ -104,8 +144,9 @@ const Work = () => {
             {projects.map((_, index) => (
               <button
                 key={index}
-                className={`carousel-dot ${index === currentIndex ? "carousel-dot-active" : ""
-                  }`}
+                className={`carousel-dot ${
+                  index === currentIndex ? "carousel-dot-active" : ""
+                }`}
                 onClick={() => goToSlide(index)}
                 aria-label={`Go to project ${index + 1}`}
                 data-cursor="disable"
@@ -119,3 +160,4 @@ const Work = () => {
 };
 
 export default Work;
+
